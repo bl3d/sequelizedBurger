@@ -1,0 +1,46 @@
+<div id="mainContent">
+
+	<img id="burgerGraphic" src="/assets/img/burgerGraphic.png" alt="Delicious Burger Image">
+	<h1 id="mainTitle">Eat-Da-Burger</h1>
+
+	<div id="burgerDeets">		
+
+		<ul id="toChew">
+		  {{#each burgers}}
+		  	{{#unless this.devoured}}
+			  	<li> 
+			      <p><span class="label">{{this.id}}).</span> {{this.burger_name}}</p> 
+
+			      <form class="chompBtn" action="/{{this.id}}?_method=PUT" method="POST">
+			        <input type="hidden" name="id" value="{{this.id}}">
+			        <button class="chompThis" type="submit">CHOMP!</button>
+			      </form>
+			  	</li>
+		  	{{/unless}} 
+		  {{/each}}
+		</ul>
+
+		<ul id="chomped">
+		  {{#each burgers}}
+		  	{{#if this.devoured}}
+			  	<li>
+			  	  <p><span class="label">{{this.id}}).</span> {{this.burger_name}}</p>
+			  	</li>
+		  	{{/if}} 
+		  {{/each}}
+		</ul>	
+
+	</div>
+	
+	
+	<div id="addBurgerArea">
+		<form id="addBurgerForm" action="/insert" method="POST">
+		  <div class="form-group"> 
+		    <input type="text" id="newBurger" name="newBurger">
+		  </div>
+		  <button id="addBurgerBtn" type="submit">Add Burger</button>
+		</form>			
+	</div>
+
+
+</div>
