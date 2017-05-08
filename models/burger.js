@@ -1,4 +1,29 @@
-var orm = require("../config/orm.js");
+module.exports = function(sequelize, DataTypes) {
+  var Burger = sequelize.define("Burger", {
+    burger_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    }, 
+    devoured: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: 0
+    },
+    date: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    }
+  });
+  return Burger;
+};
+
+
+
+
+
+/*var orm = require("../config/orm.js");
 
 var burger = {
   selectAll: function(cb) {
@@ -18,4 +43,4 @@ var burger = {
   }
 }; 
 
-module.exports = burger;
+module.exports = burger;*/
