@@ -5,10 +5,9 @@ var db = require("../models");
 
 
 router.get("/", function(req, res) {
-    db.Burger.findAll({}).then(function(dbBurger) {
-      // We have access to the todos as an argument inside of the callback function
-      // res.json(dbBurger);
-      // console.log(dbBurger);
+    db.Burger.findAll({
+      order: '`burger_name` ASC'
+    }).then(function(dbBurger) { 
       var burgerObject = {
         burgers: dbBurger
       };       
@@ -38,39 +37,5 @@ router.put("/:id", function(req, res) {
     });
 });
 
-
-
-
-
-
-
-//show all current burger status'
-/*router.get("/", function(req, res) {
-  burger.selectAll(function(data) {
-    var burgerObject = {
-      burgers: data
-    }; 
-    res.render("index", burgerObject);
-  }); 
-});
-
-//add a new burger to the list to devour
-router.post("/insert", function(req, res) { 
-  var burgerName = req.body.newBurger;
-  if (burgerName.length > 0) {
-    burger.insertOne(req.body.newBurger, function() {
-      res.redirect("/");
-    });
-  } else {
-    res.redirect("/");
-  } 
-});
-
-//mark a burger as devoured
-router.put("/:id", function(req, res) { 
-  burger.updateOne(req.params.id, function() {
-    res.redirect("/");
-  }); 
-});*/
 
 module.exports = router;
